@@ -1,6 +1,6 @@
 package com.ffb.construcaoalgoritmo.core;
 
-public class Associacao<K, V> {
+public class Associacao<K, V> implements Comparable<Associacao<K, V>> {
 
 	private K chave;
 	private V valor;
@@ -29,6 +29,15 @@ public class Associacao<K, V> {
 	@Override
 	public String toString() {
 		return "Associacao [chave=" + chave + ", valor=" + valor + "]";
+	}
+
+	@Override
+	public int compareTo(Associacao<K, V> o) {
+		if (this.valor.hashCode() < o.valor.hashCode())
+			return -1;
+		if (this.valor.hashCode() > o.valor.hashCode())
+			return 1;
+		return 0;
 	}
 
 }
