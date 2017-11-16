@@ -1,4 +1,4 @@
-package com.ffb.construcaoalgoritmo.core;
+package com.ffb.construcao.modelo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -73,14 +73,24 @@ public class MeuHashMapTest {
 	}
 
 	@Test
-	public void posso_inserir_10000_elementos_e_resgatar_algum() {
+	public void posso_inserir_1000000_elementos_e_resgatar_algum() {
 
 		for (Integer i = 0; i < 1000000; i++) {
-			System.out.println("inserindo: " + i.toString());
 			meuMap.put(i.toString(), i);
 		}
 
 		assertEquals(65665, meuMap.get("65665"));
+
+	}
+
+	@Test
+	public void posso_obter_o_tamanho_do_map() {
+
+		for (Integer i = 0; i < 1000000; i++) {
+			meuMap.put(i.toString(), i);
+		}
+
+		assertEquals(1000000, meuMap.size());
 
 	}
 

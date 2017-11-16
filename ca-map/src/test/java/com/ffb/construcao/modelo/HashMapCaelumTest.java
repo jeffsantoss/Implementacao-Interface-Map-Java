@@ -1,4 +1,4 @@
-package com.ffb.construcaoalgoritmo.core;
+package com.ffb.construcao.modelo;
 
 import static org.junit.Assert.assertEquals;
 

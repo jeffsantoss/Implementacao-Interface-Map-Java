@@ -1,4 +1,4 @@
-package com.ffb.construcaoalgoritmo.core;
+package com.ffb.construcao.modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,7 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 
 	private List<List<Associacao<K, V>>> listaPrincipal = new ArrayList<List<Associacao<K, V>>>();
 
-	private static final int VALOR_INCIAL = 100;
+	private static final int VALOR_INCIAL = 100000;
 
 	public MeuHashMap() {
 		for (int i = 0; i < VALOR_INCIAL; i++) {

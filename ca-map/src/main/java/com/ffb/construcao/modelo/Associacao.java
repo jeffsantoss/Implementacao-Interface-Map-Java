@@ -1,4 +1,4 @@
-package com.ffb.construcaoalgoritmo.core;
+package com.ffb.construcao.modelo;
 
 public class Associacao<K, V> implements Comparable<Associacao<K, V>> {
 

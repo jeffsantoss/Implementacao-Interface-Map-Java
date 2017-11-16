@@ -1,4 +1,4 @@
-package com.ffb.construcaoalgoritmo.core;
+package com.ffb.construcao.modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
