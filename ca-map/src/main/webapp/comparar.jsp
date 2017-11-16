@@ -9,7 +9,6 @@
         $(document).ready(function() {
         	var qtd = prompt("Quantidade de números para inserir");
         	
-        	if(qtd){
         	$.ajax({
     			url: "/comparar/executar-algoritmo/",
     			type: "POST",
@@ -19,10 +18,7 @@
     			success: function(data) {
     				
     			}
-    		});
-        	}
-        	
-        	        	             
+    		});        	             
         });
     </script>
 </head>

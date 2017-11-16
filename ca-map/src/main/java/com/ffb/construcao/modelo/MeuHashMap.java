@@ -11,7 +11,7 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 
 	private List<List<Associacao<K, V>>> listaPrincipal = new ArrayList<List<Associacao<K, V>>>();
 
-	private static final int VALOR_INCIAL = 100000;
+	private static final int VALOR_INCIAL = 1000000;
 
 	public MeuHashMap() {
 		for (int i = 0; i < VALOR_INCIAL; i++) {
@@ -94,6 +94,8 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 		if (this.containsKey(chave)) {
 			throw new IllegalArgumentException("A chave já existe");
 		}
+
+		// this.listaPrincipal.add(new ArrayList<Associacao<K, V>>());
 
 		List<Associacao<K, V>> listaSecundaria = this
 				.obterListaSecudariaPorChave((K) chave);

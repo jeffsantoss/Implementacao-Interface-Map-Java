@@ -33,10 +33,11 @@ public class Associacao<K, V> implements Comparable<Associacao<K, V>> {
 
 	@Override
 	public int compareTo(Associacao<K, V> o) {
-		if (this.valor.hashCode() < o.valor.hashCode())
+		if (this.chave.hashCode() < o.chave.hashCode())
 			return -1;
-		if (this.valor.hashCode() > o.valor.hashCode())
+		if (this.chave.hashCode() > o.chave.hashCode())
 			return 1;
+
 		return 0;
 	}
 

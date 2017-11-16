@@ -62,25 +62,12 @@ public class MeuHashMapTest {
 	}
 
 	@Test
-	public void posso_inserir_1000_elementos_e_resgatar_algum() {
-
-		for (Integer i = 0; i < 1000; i++) {
-			meuMap.put(i.toString(), i);
-		}
-
-		assertEquals(312, meuMap.get("312"));
-
-	}
-
-	@Test
 	public void posso_inserir_1000000_elementos_e_resgatar_algum() {
 
-		for (Integer i = 0; i < 1000000; i++) {
+		for (Integer i = 0; i < 17001000; i++) {
+			System.out.println("inserindo.. " + i.toString());
 			meuMap.put(i.toString(), i);
 		}
-
-		assertEquals(65665, meuMap.get("65665"));
-
 	}
 
 	@Test
