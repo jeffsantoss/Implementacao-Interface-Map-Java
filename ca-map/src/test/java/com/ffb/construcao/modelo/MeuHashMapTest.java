@@ -21,7 +21,7 @@ public class MeuHashMapTest {
 
 	@Test
 	public void posso_inserir_elemento() {
-		meuMap.put("1", 1);
+		meuMap.put("50", 50);
 	}
 
 	@Test

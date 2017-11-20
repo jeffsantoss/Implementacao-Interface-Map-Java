@@ -11,7 +11,7 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 
 	private List<List<Associacao<K, V>>> listaPrincipal = new ArrayList<List<Associacao<K, V>>>();
 
-	private static final int VALOR_INCIAL = 1;
+	private static final int VALOR_INCIAL = 1000000;
 
 	public MeuHashMap() {
 		for (int i = 0; i < VALOR_INCIAL; i++) {
@@ -92,10 +92,8 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 	public V put(K chave, V valor) {
 
 		if (this.containsKey(chave)) {
-			throw new IllegalArgumentException("A chave já existe");
+			this.remove(chave);
 		}
-
-		listaPrincipal.add(new ArrayList<Associacao<K, V>>());
 
 		List<Associacao<K, V>> listaSecundaria = obterListaSecudariaPorChave(
 				(K) chave);
@@ -104,6 +102,8 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 
 		listaSecundaria.add(associacao);
 
+		// não tem sentindo ordenar a lista secundária que só contem um
+		// elemento.
 		if (listaSecundaria.size() > 1) {
 			Collections.sort(listaSecundaria);
 		}
@@ -121,19 +121,18 @@ public class MeuHashMap<K, V> implements Map<K, V> {
 	@Override
 	public V remove(Object chave) {
 
-		if (!this.containsKey((K) chave)) {
-			throw new IllegalArgumentException("A chave não existe");
-		}
-
 		List<Associacao<K, V>> listaSecundaria = this
 				.obterListaSecudariaPorChave((K) chave);
 
 		Associacao<K, V> associacaoEncontrada = buscaBinaria(listaSecundaria,
 				(K) chave);
 
-		listaSecundaria.remove(associacaoEncontrada);
-
-		return associacaoEncontrada.getValor();
+		if (associacaoEncontrada != null) {
+			listaSecundaria.remove(associacaoEncontrada);
+			return associacaoEncontrada.getValor();
+		} else {
+			throw new IllegalArgumentException("A chave não existe");
+		}
 	}
 
 	@Override

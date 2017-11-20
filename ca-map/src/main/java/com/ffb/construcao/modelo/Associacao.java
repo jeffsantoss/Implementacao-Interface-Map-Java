@@ -8,6 +8,7 @@ public class Associacao<K, V> implements Comparable<Associacao<K, V>> {
 	public Associacao(K chave, V valor) {
 		this.chave = chave;
 		this.valor = valor;
+
 	}
 
 	public K getChave() {
