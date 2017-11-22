@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class MeuHashMap<K, V> implements Map<K, V> {
+public class FBUniImpl<K, V> implements Map<K, V> {
 
 	private List<List<Associacao<K, V>>> listaPrincipal = new ArrayList<List<Associacao<K, V>>>();
 
 	private static final int VALOR_INCIAL = 1000000;
 
-	public MeuHashMap() {
+	public FBUniImpl() {
 		for (int i = 0; i < VALOR_INCIAL; i++) {
 			this.listaPrincipal.add(new ArrayList<Associacao<K, V>>());
 		}

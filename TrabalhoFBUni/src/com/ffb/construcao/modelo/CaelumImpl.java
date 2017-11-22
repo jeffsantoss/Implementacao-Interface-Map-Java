@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class HashMapCaelum<K, V> implements Map<K, V> {
+public class CaelumImpl<K, V> implements Map<K, V> {
 
 	private List<List<Associacao<K, V>>> tabela = new ArrayList<List<Associacao<K, V>>>();
 
-	public HashMapCaelum() {
+	public CaelumImpl() {
 		for (int i = 0; i < 100; i++) {
 			this.tabela.add(new LinkedList<Associacao<K, V>>());
 		}
@@ -124,8 +124,13 @@ public class HashMapCaelum<K, V> implements Map<K, V> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		Integer tamanhoTotal = 0;
+
+		for (List<Associacao<K, V>> list : tabela) {
+			tamanhoTotal += list.size();
+		}
+
+		return tamanhoTotal;
 	}
 
 	public Collection<Associacao<K, V>> pegarTodos() {

@@ -6,12 +6,18 @@ import java.util.Map;
 
 public class Util {
 
-	private static void popularMap(Integer quantidadeDeInsercoes,
-			Map<String, Object> implementacaoMap) {
+	public static float tempoEmSegundos(long start) {
+		return ((float) (System.currentTimeMillis() - start) / 1000);
+	}
+
+	public static long tempoEmMS(long start) {
+		return System.currentTimeMillis() - start;
+	}
+
+	private static void popularMap(Integer quantidadeDeInsercoes, Map<String, Object> implementacaoMap) {
 
 		for (Integer i = 0; i < quantidadeDeInsercoes; i++) {
 			implementacaoMap.put(i.toString(), i);
-
 		}
 	}
 
@@ -23,14 +29,13 @@ public class Util {
 	 * @return tempo
 	 */
 
-	public static Long calcularTempoInsercao(Integer quantidadeDeInsercoes,
-			Map<String, Object> implementacaoMap) {
+	public static float calcularTempoInsercao(Map<String, Object> implementacaoMap, Integer quantidadeDeInsercoes) {
 
 		long start = System.currentTimeMillis();
 
 		popularMap(quantidadeDeInsercoes, implementacaoMap);
 
-		return System.currentTimeMillis() - start;
+		return tempoEmSegundos(start);
 	}
 
 	/**
@@ -41,14 +46,15 @@ public class Util {
 	 * @return tempo.
 	 */
 
-	public static long calcularTempoRemocao(
-			Map<String, Object> implementacaoMap, String chaveARemover) {
+	public static float calcularTempoRemocaoTodosElementos(Map<String, Object> implementacaoMap, Integer qtdElementos) {
 
 		long start = System.currentTimeMillis();
 
-		implementacaoMap.remove(chaveARemover);
+		for (Integer i = 0; i < qtdElementos; i++) {
+			implementacaoMap.remove(i.toString());
+		}
 
-		return System.currentTimeMillis() - start;
+		return tempoEmSegundos(start);
 	}
 
 	/**
@@ -59,14 +65,24 @@ public class Util {
 	 * @return tempo.
 	 */
 
-	public static long calcularTempoBusca(Map<String, Object> implementacaoMap,
-			String chaveABuscar) {
+	public static float calcularTempoBusca(Map<String, Object> implementacaoMap, String chaveABuscar) {
 
 		long start = System.currentTimeMillis();
 
 		implementacaoMap.get(chaveABuscar);
 
-		return System.currentTimeMillis() - start;
+		return tempoEmSegundos(start);
+	}
+
+	public static float calcularTempoBuscaTodosElementos(Map<String, Object> implementacaoMap, Integer qtdElementos) {
+
+		long start = System.currentTimeMillis();
+
+		for (Integer i = 0; i < qtdElementos; i++) {
+			implementacaoMap.get(i.toString());
+		}
+
+		return tempoEmSegundos(start);
 	}
 
 	/**
@@ -78,60 +94,77 @@ public class Util {
 	 * @return tempo.
 	 */
 
-	public static Double calcularMediaTempoInsercao(
-			Integer quantidadeDeInsercoes, Integer quantidadeDeExecucoes,
+	public static long calcularMediaTempoInsercao(Integer quantidadeDeInsercoes, Integer quantidadeDeExecucoes,
 			Map<String, Object> implementacaoMap) {
 
 		List<Long> tempos = new ArrayList<Long>();
 
 		for (int i = 0; i < quantidadeDeExecucoes; i++) {
-			tempos.add(Util.calcularTempoInsercao(quantidadeDeInsercoes,
-					implementacaoMap));
+			
+			long start = System.currentTimeMillis();
+
+			popularMap(quantidadeDeInsercoes, implementacaoMap);
+
+			tempos.add(tempoEmMS(start));
 		}
 
-		Double media = 0d;
+		long media = 0;
 
-		for (Long tempo : tempos) {
+		for (long tempo : tempos) {
 			media += tempo;
 		}
 
 		return media / tempos.size();
 	}
 
-	public static Double calcularMediaTempoRemocao(List<String> valores,
-			Integer quantidadeDeExecucoes,
-			Map<String, Object> implementacaoMap) {
+	public static long calcularMediaTempoRemocao(Integer quantidadeDeExecucoes, Map<String, Object> implementacaoMap) {
+
+		Integer qtdElementos = implementacaoMap.size();
 
 		List<Long> tempos = new ArrayList<Long>();
 
 		for (int i = 0; i < quantidadeDeExecucoes; i++) {
-			tempos.add(Util.calcularTempoRemocao(implementacaoMap,
-					valores.get(i)));
+
+			long start = System.currentTimeMillis();
+
+			for (Integer j = 0; j < qtdElementos; j++) {
+				implementacaoMap.remove(j.toString());
+			}
+
+			tempos.add(tempoEmMS(start));
+
+			popularMap(qtdElementos, implementacaoMap);
 		}
+		
+		long media = 0;
 
-		Double media = 0d;
-
-		for (Long tempo : tempos) {
+		for (long tempo : tempos) {
 			media += tempo;
 		}
 
 		return media / tempos.size();
 	}
 
-	public static Double calcularMediaTempoBusca(List<String> valores,
-			Integer quantidadeDeExecucoes,
-			Map<String, Object> implementacaoMap) {
+	public static long calcularMediaTempoBusca(Map<String, Object> implementacaoMap, Integer quantidadeDeExecucoes) {
+
+		Integer qtdElementos = implementacaoMap.size();
 
 		List<Long> tempos = new ArrayList<Long>();
 
 		for (int i = 0; i < quantidadeDeExecucoes; i++) {
-			tempos.add(
-					Util.calcularTempoBusca(implementacaoMap, valores.get(i)));
+
+			long start = System.currentTimeMillis();
+
+			for (Integer j = 0; j < qtdElementos; j++) {
+				implementacaoMap.get(j.toString());
+			}
+
+			tempos.add(tempoEmMS(start));
 		}
 
-		Double media = 0d;
+		long media = 0;
 
-		for (Long tempo : tempos) {
+		for (long tempo : tempos) {
 			media += tempo;
 		}
 

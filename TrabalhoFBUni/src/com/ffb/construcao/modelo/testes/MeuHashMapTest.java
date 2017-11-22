@@ -10,7 +10,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ffb.construcao.modelo.MeuHashMap;
+import com.ffb.construcao.modelo.FBUniImpl;
 
 public class MeuHashMapTest {
 
@@ -18,7 +18,7 @@ public class MeuHashMapTest {
 
 	@Before
 	public void iniciar() {
-		meuMap = new MeuHashMap<String, Object>();
+		meuMap = new FBUniImpl<String, Object>();
 	}
 
 	@Test
