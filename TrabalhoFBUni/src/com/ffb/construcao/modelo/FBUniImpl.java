@@ -180,7 +180,7 @@ public class FBUniImpl<K, V> implements Map<K, V> {
 
 	private List<Associacao<K, V>> obterListaSecudariaPorChave(K chave) {
 
-		int indiceChave = this.calcularHashCodeParaBuscarIndice((K) chave);
+		int indiceChave = this.calcularHashCodeParaBuscarIndice(chave);
 
 		return this.listaPrincipal.get(indiceChave);
 	}
